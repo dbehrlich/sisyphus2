@@ -1,8 +1,14 @@
 from task import Task
 import numpy as np
 
-
+"""
+Binary Decision task. 
+Takes two channels of noisy input.
+Binary output with a one hot encoding towards the higher mean channel
+"""
 class RDM(Task):
+    def __init__(self, dt, tau, T, N_batch):
+        super(RDM,self).__init__(2, 2, dt, tau, T, N_batch)
 
     def generate_trial_params(self, batch, trial):
 

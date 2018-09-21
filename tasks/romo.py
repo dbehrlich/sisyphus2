@@ -2,8 +2,19 @@ from task import Task
 import numpy as np
 
 # Romo task, as in pycog
+"""
+TODO(jasmine): cite pycog, describe task, pycog says "A parametric working memory task, loosely based on the vibrotactile delayed
+discrimination task."
+  Neuronal population coding of parametric working memory.
+  O. Barak, M. Tsodyks, & R. Romo, JNS 2010.
+ 
+  http://www.jneurosci.org/content/30/28/9424.short
+"""
 
 class Romo(Task):
+
+    def __init__(self, dt, tau, T, N_batch):
+        super(RDM,self).__init__(2, 2, dt, tau, T, N_batch)
 
     def scale_p(self, f):
         return 0.4 + 0.8 * (f - 10) / (34 - 10)
