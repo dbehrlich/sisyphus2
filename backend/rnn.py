@@ -58,6 +58,12 @@ class RNN(object):
         except KeyError:
             print("You must pass 'dt' to RNN")
             raise
+        try:
+            self.N_batch = params['N_batch']
+        except KeyError:
+            print("You must pass 'N_batch' to RNN")
+            raise
+            
         self.alpha = (1.0 * self.dt) / self.tau
         self.dale_ratio = params.get('dale_ratio', None)
         self.rec_noise = params.get('rec_noise', 0.0)
@@ -107,7 +113,6 @@ class RNN(object):
         self.x = tf.placeholder("float", [None, N_steps, N_in])
         self.y = tf.placeholder("float", [None, N_steps, N_out])
         self.output_mask = tf.placeholder("float", [None, N_steps, N_out])
-        self.N_batch = tf.shape(self.x)[0]
 
         # --------------------------------------------------
         # Initialize variables in proper scope
