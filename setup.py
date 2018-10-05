@@ -8,7 +8,7 @@ setup(
     long_description=open('README.md').read(),
 
     install_requires=['docutils>=0.3', 'tensorflow', 'numpy'],
-    python_requires='==2.7'
+    python_requires='==2.7',
     author="Alex Atanasov, David Brandfonbrener, Daniel Ehrlich, Jasmine Stone",
     author_email="daniel.ehrlich@yale.edu",
     description="Easy-to-use package for the modeling and analysis of neural network dynamics, directed towards cognitive neuroscientists.",
