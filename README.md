@@ -47,11 +47,12 @@ For Demos:
 
 ### Installation
 
-pip install **
-
-#### Alternative Install
 git clone -b networks-branch https://github.com/dbehrlich/sisyphus2.git  
 python setup.py install
+
+#### Alternative Install
+
+pip install **
 
 
 ## Params
