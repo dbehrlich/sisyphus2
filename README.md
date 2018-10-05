@@ -1,32 +1,58 @@
 # Project Sisyphus
 
-This is an ongoing long-term project to develop a concise and easy-to-use package for the modeling and analysis of neural network dynamics. 
-
-Code is written and upkept by: @davidbrandfonbrener @dbehrlic @ABAtanasov 
+This is package is intended to help cognitive scientist translate task designs of interest into a form capable of being used as training data for a recurrent neural network.
 
 
-## TODO
+We have isolated the front-end task design, in which users can intuitively describe the conditional logic of their task from the backend where gradient descent based optimization occurs. This is intended to facilitate researchers who might otherwise not have an easy implementation available to design and test hypothesis regarding the behavior of recurrent neural networks in different task environements.
 
-- Tasks. Move all tasks over to object oriented task class
+## Package Structure
 
-- Throw errors on bad inputs. Try/except for params
+### Tasks
 
-- Test/expand simulator objects
+task superclass
 
-- Demos
+Extensibility 
 
-- Documentation
+- generate_trial_params
+- trial_function
 
-- Project names
+### Models
 
-- Change from params to **kwargs?
+- basic
+- lstm
 
-- Does destruct destruct all models?
+### Backend
 
-- Save params?
+- initializations
+- loss_functions
+- regularizations
+- rnn
+- simulation
 
-- Clean up dale ratio handling?
+Code is written and upkept by: @davidbrandfonbrener @dbehrlic @ABAtanasov @syncrostone 
 
+
+## Install
+
+### Dependencies
+
+- Numpy
+- Tensorflow
+- Python=2.7
+
+For Demos:
+- Jupyter
+- Ipython
+- Matplotlib
+
+### Installation
+
+git clone -b networks-branch https://github.com/dbehrlich/sisyphus2.git  
+python setup.py install
+
+#### Alternative Install
+
+pip install **
 
 
 ## Params
