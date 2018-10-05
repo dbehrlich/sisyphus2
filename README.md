@@ -2,31 +2,30 @@
 
 This is an ongoing long-term project to develop a concise and easy-to-use package for the modeling and analysis of neural network dynamics. 
 
-Code is written and upkept by: @davidbrandfonbrener @dbehrlic @ABAtanasov 
+Code is written and upkept by: @davidbrandfonbrener @dbehrlic @ABAtanasov @syncrostone 
 
 
-## TODO
+## Install
 
-- Tasks. Move all tasks over to object oriented task class
+### Dependencies
 
-- Throw errors on bad inputs. Try/except for params
+- Numpy
+- Tensorflow
+- Python=2.7
 
-- Test/expand simulator objects
+For Demos:
+- Jupyter
+- Ipython
+- Matplotlib
 
-- Demos
+### Installation
 
-- Documentation
+#### pip install
+pip install **
 
-- Project names
-
-- Change from params to **kwargs?
-
-- Does destruct destruct all models?
-
-- Save params?
-
-- Clean up dale ratio handling?
-
+#### alternative install
+git clone -b networks-branch https://github.com/dbehrlich/sisyphus2.git
+python setup.py install
 
 
 ## Params
