@@ -1,9 +1,9 @@
-from setuptools import setup, find_packages
+from distutils.core import setup
 
 setup(
     name='Sisyphus',
     version='0.4dev',
-    packages=find_packages(),
+    packages=['sisyphus2'],
     license='MIT',
     long_description=open('README.md').read(),
 
