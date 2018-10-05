@@ -1,9 +1,10 @@
+import setuptools
 from distutils.core import setup
 
 setup(
     name='Sisyphus',
-    version='0.5dev',
-    packages=['sisyphus2'],
+    version='0.9dev',
+    packages=['sisyphus2', 'sisyphus2.tasks', 'sisyphus2.backend', 'sisyphus2.backend.models'],
     license='MIT',
     long_description=open('README.md').read(),
 
