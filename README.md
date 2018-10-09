@@ -21,7 +21,7 @@ from matplotlib import pyplot as plt
 rdm = rd.RDM(dt = 10, tau = 100, T = 2000, N_batch = 128)  
 gen = rdm.batch_generator()
 
-params = rdm.__dict__  
+params = rdm.\_\_dict\_\_  
 params['name'] = 'model'  
 params['N_rec'] = 50  
 
@@ -29,7 +29,7 @@ model = Basic(params)
 model.build()  
 model.train(gen)
 
-x,_,_ = gen.next()
+x,\_,\_ = gen.next()
 
 plt.plot(model.test(x)[0][0,:,:])
 
