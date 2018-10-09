@@ -10,7 +10,7 @@ Code is written and upkept by: @davidbrandfonbrener @dbehrlic @ABAtanasov @syncr
 
 ## 17 Lines Introduction
 
-A minimal introduction to our package. In this simple introduction you can both generate a new recurrent neural network model and train that model on the random dot motion discrimination task.
+A minimal introduction to our package. In this simple introduction you can generate a new recurrent neural network model, train that model on the random dot motion discrimination task, and plot out an example output in just 17 lines.
 
 	import sisyphus2  
 	from sisyphus2.tasks import rdm as rd  
@@ -23,7 +23,7 @@ A minimal introduction to our package. In this simple introduction you can both 
 	rdm = rd.RDM(dt = 10, tau = 100, T = 2000, N_batch = 128)  
 	gen = rdm.batch_generator()
 
-	params = rdm.\_\_dict\_\_  
+	params = rdm.__dict__  
 	params['name'] = 'model'  
 	params['N_rec'] = 50  
 
@@ -31,7 +31,7 @@ A minimal introduction to our package. In this simple introduction you can both 
 	model.build()  
 	model.train(gen)
 
-	x,\_,\_ = gen.next()
+	x,_,_ = gen.next()
 
 	plt.plot(model.test(x)[0][0,:,:])
 
