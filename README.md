@@ -5,6 +5,9 @@ This is package is intended to help cognitive scientist translate task designs o
 
 We have isolated the front-end task design, in which users can intuitively describe the conditional logic of their task from the backend where gradient descent based optimization occurs. This is intended to facilitate researchers who might otherwise not have an easy implementation available to design and test hypothesis regarding the behavior of recurrent neural networks in different task environements.
 
+
+Code is written and upkept by: @davidbrandfonbrener @dbehrlic @ABAtanasov @syncrostone 
+
 ## Package Structure
 
 ### Tasks
@@ -13,13 +16,21 @@ task superclass
 
 Extensibility 
 
-- generate_trial_params
-- trial_function
+	def
+	- generate_trial_params
+	- trial_function
 
 ### Models
 
 - basic
 - lstm
+
+Extensibility:
+
+	def
+	- recurrent_timestep
+	- output_timestep
+	- forward_pass
 
 ### Backend
 
@@ -28,8 +39,6 @@ Extensibility
 - regularizations
 - rnn
 - simulation
-
-Code is written and upkept by: @davidbrandfonbrener @dbehrlic @ABAtanasov @syncrostone 
 
 
 ## Install
