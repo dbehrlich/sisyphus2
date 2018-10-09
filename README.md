@@ -10,23 +10,23 @@ Code is written and upkept by: @davidbrandfonbrener @dbehrlic @ABAtanasov @syncr
 
 ## 17 Lines Introduction
 
-import sisyphus2
-from sisyphus2.tasks import rdm as rd
-from sisyphus2.backend.models.basic import Basic
-import tensorflow as tf
+import sisyphus2  
+from sisyphus2.tasks import rdm as rd  
+from sisyphus2.backend.models.basic import Basic  
+import tensorflow as tf  
 
-from matplotlib import pyplot as plt
+from matplotlib import pyplot as plt  
 %matplotlib inline
 
-rdm = rd.RDM(dt = 10, tau = 100, T = 2000, N_batch = 128)
+rdm = rd.RDM(dt = 10, tau = 100, T = 2000, N_batch = 128)  
 gen = rdm.batch_generator()
 
-params = rdm.__dict__
-params['name'] = 'model'
-params['N_rec'] = 50
+params = rdm.__dict__  
+params['name'] = 'model'  
+params['N_rec'] = 50  
 
-model = Basic(params)
-model.build()
+model = Basic(params)  
+model.build()  
 model.train(gen)
 
 x,_,_ = gen.next()
