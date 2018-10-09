@@ -10,30 +10,32 @@ Code is written and upkept by: @davidbrandfonbrener @dbehrlic @ABAtanasov @syncr
 
 ## 17 Lines Introduction
 
-import sisyphus2  
-from sisyphus2.tasks import rdm as rd  
-from sisyphus2.backend.models.basic import Basic  
-import tensorflow as tf  
+A minimal introduction to our package. In this simple introduction you can both generate a new recurrent neural network model and train that model on the random dot motion discrimination task.
 
-from matplotlib import pyplot as plt  
-%matplotlib inline
+	import sisyphus2  
+	from sisyphus2.tasks import rdm as rd  
+	from sisyphus2.backend.models.basic import Basic  
+	import tensorflow as tf  
 
-rdm = rd.RDM(dt = 10, tau = 100, T = 2000, N_batch = 128)  
-gen = rdm.batch_generator()
+	from matplotlib import pyplot as plt  
+	%matplotlib inline
 
-params = rdm.\_\_dict\_\_  
-params['name'] = 'model'  
-params['N_rec'] = 50  
+	rdm = rd.RDM(dt = 10, tau = 100, T = 2000, N_batch = 128)  
+	gen = rdm.batch_generator()
 
-model = Basic(params)  
-model.build()  
-model.train(gen)
+	params = rdm.\_\_dict\_\_  
+	params['name'] = 'model'  
+	params['N_rec'] = 50  
 
-x,\_,\_ = gen.next()
+	model = Basic(params)  
+	model.build()  
+	model.train(gen)
 
-plt.plot(model.test(x)[0][0,:,:])
+	x,\_,\_ = gen.next()
 
-model.destruct()
+	plt.plot(model.test(x)[0][0,:,:])
+
+	model.destruct()
 
 ## Package Structure
 
