@@ -1,14 +1,11 @@
 from task import Task
 import numpy as np
 
-# Romo task, as in pycog
 """
-TODO(jasmine): cite pycog, describe task, pycog says "A parametric working memory task, loosely based on the vibrotactile delayed
-discrimination task."
-  Neuronal population coding of parametric working memory.
-  O. Barak, M. Tsodyks, & R. Romo, JNS 2010.
- 
-  http://www.jneurosci.org/content/30/28/9424.short
+    Romo, R., Brody, C. D., Hernández, A., & Lemus, L. (1999). Neuronal correlates of 
+    parametric working memory in the prefrontal cortex. Nature, 399(6735), 470.
+
+    https://www.nature.com/articles/20939
 """
 
 class Romo(Task):
