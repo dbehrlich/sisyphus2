@@ -37,19 +37,44 @@ A minimal introduction to our package. In this simple introduction you can gener
 
 	model.destruct()
 
-## Package Structure
 
-### Tasks
 
-task superclass
+## Writing a New Task
 
-Extensibility 
+	Class your_new_class(Task):
 
-	def
-	- generate_trial_params
-	- trial_function
+		def __init__(self, N_in, N_out,dt, tau, T, N_batch):
+	        super(RDM,self).__init__(N_in, N_out, dt, tau, T, N_batch)
 
-### Models
+		def generate_trial_params(self,batch,trial):
+
+			''' function that produces trial specific params for your task (e.g. coherence for the random dot motion discrimination task)
+
+			Args:
+				batch: # of batch for training (for internal use)
+				trial: # of trial within a batch (for internal use)
+
+			Returns:
+				params: A dictionary of necessary params for trial_function
+
+				'''
+
+		def trial_function(self,t,params):
+
+			'''function that specifies network input, target output and loss mask for your task.
+
+			Args:
+				t: time
+				params: params dictionary from generate_trial_params
+
+			Returns:
+				x_t: input vector at time t
+				y_t: target output vector at time t
+				mask_t: loss function mask at time t
+
+				'''
+
+## Building a New Model
 
 - basic
 - lstm
