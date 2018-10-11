@@ -1,4 +1,4 @@
-# Project Sisyphus
+# PsychRNN
 
 This is package is intended to help cognitive scientist translate task designs of interest into a form capable of being used as training data for a recurrent neural network.
 
@@ -7,6 +7,29 @@ We have isolated the front-end task design, in which users can intuitively descr
 
 
 Code is written and upkept by: @davidbrandfonbrener @dbehrlic @ABAtanasov @syncrostone 
+
+## Install
+
+### Dependencies
+
+- Numpy
+- Tensorflow
+- Python=2.7
+
+For Demos:
+- Jupyter
+- Ipython
+- Matplotlib
+
+### Installation
+
+git clone -b networks-branch https://github.com/dbehrlich/sisyphus2.git  
+python setup.py install
+
+#### Alternative Install
+
+pip install **
+
 
 ## 17 Lines Introduction
 
@@ -41,14 +64,30 @@ A minimal introduction to our package. In this simple introduction you can gener
 
 ## Writing a New Task
 
+You can easily begin running your own tasks by writing a new task subclass with the two functions (generate_trial_params, trial_function) specified below, or by modifying one of our existing task files such as "rdm.py" or "romo.py".
+
 	Class your_new_class(Task):
 
-		def __init__(self, N_in, N_out,dt, tau, T, N_batch):
-	        super(RDM,self).__init__(N_in, N_out, dt, tau, T, N_batch)
+		def __init__(self, N_in, N_out, dt, tau, T, N_batch):
+
+			super(RDM,self).__init__(N_in, N_out, dt, tau, T, N_batch)
+
+				'''
+
+				Args:
+					N_in: number of network inputs
+					N_out: number of network output
+					dt: simulation time step
+					tau: unit time constant
+					T: trial length
+					N_batch: number of trials per training update
+
+				'''
 
 		def generate_trial_params(self,batch,trial):
 
-			''' function that produces trial specific params for your task (e.g. coherence for the random dot motion discrimination task)
+			''' function that produces trial specific params for your task (e.g. coherence for the 
+				random dot motion discrimination task)
 
 			Args:
 				batch: # of batch for training (for internal use)
@@ -61,30 +100,63 @@ A minimal introduction to our package. In this simple introduction you can gener
 
 		def trial_function(self,t,params):
 
-			'''function that specifies network input, target output and loss mask for your task.
+			'''function that specifies conditional network input, target output and loss mask for your task at a given time (e.g. if t>stim_onset x_t=1).
 
 			Args:
 				t: time
 				params: params dictionary from generate_trial_params
 
 			Returns:
-				x_t: input vector at time t
-				y_t: target output vector at time t
-				mask_t: loss function mask at time t
+				x_t: input vector of length N_in at time t
+				y_t: target output vector of length N_out at time t
+				mask_t: loss function mask vector of length N_out at time t
 
 				'''
 
 ## Building a New Model
 
-- basic
-- lstm
 
-Extensibility:
+New models can be added by extending the RNN superclass, as in our examples of "basic.py" and "lstm.py". Each new model class requires three functions (recurrent_timestep, output time_step and forward_pass).
 
-	def
-	- recurrent_timestep
-	- output_timestep
-	- forward_pass
+	Class your_new_model(RNN):
+
+		def recurrent_timestep(self, rnn_in, state):
+
+			'''function that updates the recurrent state of your network one timestep
+
+			Args:
+				rnn_in: network input vector of length N_in at t
+				state: network state at t
+
+			Returns:
+				new_state: network state at t+1
+
+				'''
+
+		def output_timestep(self, state):
+
+			'''function that produces output for the current state of your network at one timestep
+
+			Args:
+				state: network state at t
+
+			Returns:
+				output: output vector of length N_out at t
+
+				'''
+
+		def forward_pass(self):
+
+			'''function that contains the loop of calls to recurrent_timestep and output_timestep
+			to run the evolution of your state through a trial 
+
+
+				'''
+
+
+## Further Extensibility
+
+If you with to modify weight initializations, loss functions or regularizations it is as simple as adding an additional class to "initializations.py" describing your preferred initial weight patterns or a single function to "loss_functions.py" or "regularizations.py".
 
 ### Backend
 
@@ -94,76 +166,3 @@ Extensibility:
 - rnn
 - simulation
 
-
-## Install
-
-### Dependencies
-
-- Numpy
-- Tensorflow
-- Python=2.7
-
-For Demos:
-- Jupyter
-- Ipython
-- Matplotlib
-
-### Installation
-
-git clone -b networks-branch https://github.com/dbehrlich/sisyphus2.git  
-python setup.py install
-
-#### Alternative Install
-
-pip install **
-
-
-## Params
-
-### Task:
-- N_batch
-- N_in
-- N_out
-- T
-- dt
-- tau
-- stim_noise
-
-  
-(plus other params specific to the task)
-
-implicit params:
-  - alpha
-  - N_steps
-
-
-### Model:
-- name
-- N_rec
-- N_in
-- N_out
-- N_steps
-- dt
-- tau
-- dale_ratio
-- rec_noise
-- load_weights_path
-- initializer 
--  trainability (many boolean variables)
-
-implicit params:
-  - alpha
-  - N_batch
-
-
-### Train:
-- learning_rate
-- training_iters
-- loss_epoch
-- verbosity
-- save_weights_path
-- save_training_weights_epoch
-- training_weigts_path
-- generator_function
-- optimizer
-- clip_grads
